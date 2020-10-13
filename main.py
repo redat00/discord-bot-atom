@@ -71,6 +71,10 @@ async def http(ctx, arg):
     result = http_status(arg)
     await ctx.send(result)
 
+@bot.command()
+async def prout(ctx, arg):
+    await ctx.send('prout :poop:')
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot.run(TOKEN)
