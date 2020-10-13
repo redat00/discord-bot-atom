@@ -56,6 +56,10 @@ def get_hystats(name):
     html_request = requests.get(url)
     soup = BeautifulSoup(html_request.content,'html.parser')
     stats = soup.find('meta', property='og:description')
+
+    if('A beautiful site' in stats['content']):
+        stats['content'] = 'User not found.'
+
     return(stats['content'])
 
 # bot definition
