@@ -1,14 +1,9 @@
 #!/usr/bin/python3
 # bot.py
-import os
-import discord
-import logging
-import platform
-import subprocess
 from discord.ext import commands
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
-import pydig, re, json, requests
+import pydig, re, json, requests, os, discord, logging, platform, subprocess
 
 # LOGGING CONFIGURATION
 
@@ -67,18 +62,18 @@ bot = commands.Bot(command_prefix='!atom ')
 
 # commands
 @bot.command()
-async def dns(ctx, arg1, arg2):
-    result = get_ip(arg1, arg2)
+async def dns(ctx, domain_name, dns_type):
+    result = get_ip(domain_name, dns_type)
     await ctx.send(result)
 
 @bot.command()
-async def ping(ctx, arg):
-    result = ping_func(arg)
+async def ping(ctx, ip):
+    result = ping_func(ip)
     await ctx.send(result)
 
 @bot.command()
-async def http(ctx, arg):
-    result = http_status(arg)
+async def http(ctx, url):
+    result = http_status(url)
     await ctx.send(result)
 
 @bot.command()
@@ -86,8 +81,8 @@ async def prout(ctx):
     await ctx.send('prout :poop:')
 
 @bot.command()
-async def hystats(ctx, arg):
-    result = get_hystats(arg)
+async def hystats(ctx, player):
+    result = get_hystats(player)
     await ctx.send(result)
 
 load_dotenv()
