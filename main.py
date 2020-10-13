@@ -7,10 +7,8 @@ import platform
 import subprocess
 from discord.ext import commands
 from dotenv import load_dotenv
-import pydig
-import re
-import json
-import requests
+from bs4 import BeautifulSoup
+import pydig, re, json, requests
 
 # LOGGING CONFIGURATION
 
@@ -52,6 +50,14 @@ def http_status(value):
     status_request = requests.get(value)
     return('Status : {}'.format(status_request.status_code))
 
+# HYPIXEL STATS
+def get_hystats(name):
+    url = 'https://sky.lea.moe/stats/{}'.format(name)
+    html_request = requests.get(url)
+    soup = BeautifulSoup(html_request.content,'html.parser')
+    stats = soup.find('meta', property='og:description')
+    return(stats['content'])
+
 # bot definition
 bot = commands.Bot(command_prefix='!atom ')
 
@@ -74,6 +80,11 @@ async def http(ctx, arg):
 @bot.command()
 async def prout(ctx):
     await ctx.send('prout :poop:')
+
+@bot.command()
+async def hystats(ctx, arg):
+    result = get_hystats(arg)
+    await ctx.send(result)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
