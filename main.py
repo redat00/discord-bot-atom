@@ -53,7 +53,7 @@ def http_status(value):
     return('Status : {}'.format(status_request.status_code))
 
 # bot definition
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='!atom ')
 
 # commands
 @bot.command()
