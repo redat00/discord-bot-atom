@@ -9,7 +9,7 @@ import pydig, re, json, requests, os, discord, logging, platform, subprocess
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('/var/log/supervisor/discord-bot.log')
+handler = logging.FileHandler('/var/log/supervisor/atom-bot.log')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
