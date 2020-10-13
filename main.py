@@ -72,7 +72,7 @@ async def http(ctx, arg):
     await ctx.send(result)
 
 @bot.command()
-async def prout(ctx, arg):
+async def prout(ctx):
     await ctx.send('prout :poop:')
 
 load_dotenv()
